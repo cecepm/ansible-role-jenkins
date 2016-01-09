@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: Cecep Mahbub
+  description: Install Jenkins CI
+  license: "License (BSD, MIT)"
+  min_ansible_version: 1.6
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+
+  categories:
+  - development
+  - packaging
+
+dependencies: []

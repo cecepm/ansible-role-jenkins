@@ -1,0 +1,12 @@
+---
+- name: List plugins to be updated
+  shell: java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} list-plugins | grep ')$' | cut -f 1 -d ' ' | sed ':a;N;$!ba;s/\n/ /g'
+  register: plugins_updates
+  changed_when: plugins_updates.stdout != ''
+
+- name: Update plugins
+  shell: java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:{{ jenkins_http_port }} install-plugin {{ item }}
+  with_items: plugins_updates.stdout.split()
+  when: plugins_updates.stdout != ''
+  ignore_errors: yes
+  notify: restart jenkins

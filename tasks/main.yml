@@ -1,0 +1,9 @@
+---
+# install jenkins from stable repository
+- include: install_jenkins.yml
+
+# install plugins and update plugins need jenkins cli to be installed first
+- include: install_jenkins_cli.yml
+
+- include: install_plugins.yml
+- include: update_plugins.yml
