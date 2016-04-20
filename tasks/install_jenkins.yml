@@ -18,6 +18,6 @@
   shell: "curl -D - --silent http://{{ jenkins_hostname }}:{{ jenkins_http_port }}/cli/"
   register: result
   until: (result.stdout.find("403 Forbidden") != -1) or (result.stdout.find("200 OK") != -1) and (result.stdout.find("Please wait while") == -1)
-  retries: "{{ jenkins_connection_retries }}"
-  delay: "{{ jenkins_connection_delay }}"
+  retries: 60
+  delay: 5
   changed_when: false
